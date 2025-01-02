@@ -300,76 +300,147 @@
             text-decoration: none;
         }
         
-        .espresso-text {
-            text-transform: uppercase;
-            font-family: 'Calluna', 'Times New Roman', Times, serif;
-            color: #5d301a;
-        font-weight: bold;
-        }
 
-        /* Cookie Consent Styles */
-        #cookie-consent-banner {
+                /* Modified Cookie Consent Styles - GDPR-focused design */
+                #cookie-consent-banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            height: 100vh;  /* Use viewport height */
+            background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999;  /* Ensure it's above all other content */
+            font-family: Arial, sans-serif;
         }
 
         #cookie-consent-box {
-            background-color: var(--colorNeutralCool);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            font-size:small;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
+            position: relative;  /* Add relative positioning */
+            background-color: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 4px;
+            text-align: left;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 550px;
             width: 90%;
+            max-height: 90vh;  /* Limit height */
+            overflow-y: auto;  /* Add scroll if content is too long */
+            color: #333;
+            border: 1px solid #dee2e6;
+            margin: 20px;  /* Add margin to ensure it doesn't touch screen edges */
         }
 
         #cookie-consent-box h2 {
-            color: var(--colorGreenStarbucks);
-            margin-bottom: 1rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+
+        #cookie-consent-box p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #4a4a4a;
         }
 
         #cookie-consent-box button {
-            background-color: var(--colorlightBrownEspresso);
-            color: var(--colorWhite);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 1rem;
-            margin: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            margin: 0.5rem 0.8rem 0.5rem 0;
+            background-color: #f8f9fa;
+            color: #4a4a4a;
+            border: 1px solid #dee2e6;
         }
 
-        #cookie-consent-box a {
-            color: var(--colorGreenStarbucks);
-            text-decoration: none;
-            margin-left: 10px;
+        #cookie-consent-box button:hover {
+            background-color: #e9ecef;
         }
 
         #preference-options {
             display: none;
-            margin-top: 1rem;
-            text-align: left;
+            margin-top: 1.5rem;
+            background-color: #fff;
+            padding: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
         }
 
-        #preference-options label {
-            display: block;
+        .cookie-category {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cookie-category:last-child {
+            border-bottom: none;
+        }
+
+        .cookie-category label {
+            display: flex;
+            align-items: flex-start;
             margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
-        /* Fade-out Animation */
-        .fade-out {
-            animation: fadeOut 1s forwards;
+        .cookie-category input[type="checkbox"] {
+            margin-right: 0.5rem;
+            margin-top: 0.2rem;
         }
 
+        .cookie-description {
+            margin-left: 1.5rem;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        #save-preferences {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .espresso-text {
+            text-transform: none;
+            font-family: 'Times New Roman', Times, serif;
+            color: #4a4a4a;
+            font-weight: normal;
+        }
+
+        /* Make sure buttons are properly spaced and aligned */
+        #cookie-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        #cookie-buttons button {
+            margin: 0;  /* Remove default margin */
+            flex: 1 1 auto;  /* Allow buttons to grow and shrink */
+            min-width: 150px;  /* Minimum width for buttons */
+            text-align: center;
+        }
+
+        #save-preferences {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Fade animation */
         @keyframes fadeOut {
             from {
                 opacity: 1;
@@ -380,24 +451,65 @@
             }
         }
 
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            #cookie-consent-box {
+                margin: 10px;
+                padding: 1.5rem;
+                max-height: 80vh;
+            }
+
+            #cookie-buttons button {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+
     </style>
 </head>
-<body>
-    <div id="cookie-consent-banner">
-        <div id="cookie-consent-box">
-            <h2>Sana Özel Bir Deneyim</h2>
-            <div id="preference-options">
-                <label><input type="checkbox" id="performance-cookies"> Performance Cookies</label>
-                <label><input type="checkbox" id="strictly-necessary-cookies" checked disabled> Strictly Necessary Cookies</label>
-                <label><input type="checkbox" id="targeting-cookies"> Targeting Cookies</label>
-                <button id="save-preferences">Save Preferences</button>
+<div id="cookie-consent-banner">
+    <div id="cookie-consent-box">
+        <h2>Cookie Consent Preferences</h2>
+        <div id="preference-options">
+            <div class="cookie-category">
+                <label>
+                    <input type="checkbox" id="strictly-necessary-cookies" checked disabled>
+                    Strictly Necessary Cookies
+                </label>
+                <p class="cookie-description">
+                    These cookies are essential for the proper functioning of the website and cannot be disabled. They enable basic functions like page navigation, secure areas access, and shopping cart functionality. The website cannot function properly without these cookies.
+                </p>
             </div>
-            <p id="cookie-options-text"> <span class="espresso-text">ESPRESSO HOUSE</span> olarak, güvenilir ve gelişmiş bir alışveriş deneyimi sunmak amacıyla çerez kullanıyoruz. Tümünü Reddet seçeneğine tıklaman halinde tercih ve ilgi alanlarına yönelik maalesef sana özel bir deneyim sunamayacağız. "Seçenekleri Yönet" öğesine tıklayarak çerezlere ilişkin onay ayarlarını değiştirebilirsin. Çerezler vasıtasıyla hangi kişisel verileri topladığımız ve nasıl kullandığımız hakkında aydınlatma metnine buradan ulaşabilirsin.</p>
-            <div id="cookie-buttons">
-                <button id="accept-cookies">Accept</button>
-                <button id="reject-cookies">Reject</button>
-                <button id="manage-preferences">Manage My Preferences</button>
+            <div class="cookie-category">
+                <label>
+                    <input type="checkbox" id="performance-cookies">
+                    Performance Cookies
+                </label>
+                <p class="cookie-description">
+                    These cookies collect anonymous information about how visitors use our website. They help us understand which pages are most popular, where visitors come from, and how they move around the site. All information collected is aggregated and anonymous. These cookies help us improve website performance.
+                </p>
             </div>
+            <div class="cookie-category">
+                <label>
+                    <input type="checkbox" id="targeting-cookies">
+                    Targeting Cookies
+                </label>
+                <p class="cookie-description">
+                    These cookies are used to deliver advertisements more relevant to you and your interests. They are also used to limit the number of times you see an advertisement and help measure the effectiveness of advertising campaigns. They remember that you have visited a website and this information is shared with other organizations such as advertisers.
+                </p>
+            </div>
+            <button id="save-preferences">Save Preferences</button>
+        </div>
+        <p id="cookie-options-text">We use cookies to help you navigate efficiently and perform certain functions. You will find detailed information about all cookies under each consent category below. The cookies that are categorized as "Strictly Necessary" are stored on your browser as they are essential for enabling the basic functionalities of the site.</p>
+        <div id="cookie-buttons">
+            <button id="accept-cookies">Accept All Cookies</button>
+            <button id="reject-cookies">Reject Non-Essential Cookies</button>
+            <button id="manage-preferences">Manage Preferences</button>
+        </div>
         </div>
     </div>
 
